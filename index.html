@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="padding:20px;font-size:70px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color:whitesmoke;margin-left:510px">STOP WATCH</h1>
+    <div id="main">
+    <div id="time">
+    <span id="t1">00</span>
+    <span>:</span>
+    <span id="t2">00</span>
+    <span>:</span>
+    <span id="t3">00</span>
+</div>
+    <div id="buttons">
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+</div>
+</div>  
+<script>
+document.body.style.backgroundImage = "url('http://www.pixelstalk.net/wp-content/uploads/2016/07/Plain-HD-Pictures-Download.jpg')";
+
+    let getMain=document.getElementById("main");
+    getMain.setAttribute("style","height:300px;width:700px;border:1px solid balck;background-color:rgb(249, 249, 81);padding-top:20px;margin-left:400px;border-radius:50px;box-shadow:20px 20px 20px rgba(0, 0, 0, 0.451);");
+
+    let getTime=document.getElementById("time");
+    getTime.setAttribute("style","width:500px;height:120px;border:1p solid black;margin:10px;margin-left:100px;font-size:100px;color:violet");
+
+    let getHrs=document.getElementById("t1");
+    let getMins=document.getElementById("t2");
+    let getSecs=document.getElementById("t3");
+
+    let getButns=document.getElementById("buttons");
+    // getBtns.setAttribute("style","width:300px;height:100px;border:1px solid black;background-color:gray");
+
+    let getStart=document.getElementById("start");
+    getStart.setAttribute("style","margin-left:130px;padding:5px;font-size:25px;width:100px;border:none;color:white;background-color:green;border-radius:20px;margin-top:50px");
+    let getStop=document.getElementById("stop");
+    getStop.setAttribute("style","margin-left:50px;padding:5px;font-size:25px;width:100px;border:none;color:white;background-color:red;border-radius:20px");
+    let getReset=document.getElementById("reset");
+    getReset.setAttribute("style","margin-left:50px;padding:5px;font-size:25px;width:100px;border:none;color:white;background-color: rgb(80, 80, 243);border-radius:20px");
+
+    let sec=0
+    let min=0
+    let hrs=0
+    const intervalID = setInterval(function() {
+            if(timer){
+                if(sec>=59)
+                {
+                    sec=0
+                    min++
+                    if(min>=59)
+                    {
+                        min=0
+                        hrs++
+                        if(hrs>23)
+                        {
+                            hrs=0
+                            
+                        }
+                    }
+                }
+                else{
+                    sec++
+                }
+                let hstr=hrs
+                let mstr=min
+                let sstr=sec
+                if(sec<10)
+                sstr="0"+sec
+                if(min<10)
+                mstr="0"+min
+                if(hrs<10)
+                hstr="0"+hrs
+                getSecs.innerHTML=sstr
+                getMins.innerHTML=mstr
+                getHrs.innerHTML=hstr
+            }}, 1000);
+        getStart.addEventListener("click",()=>{
+            timer=true
+            intervalID()
+        })
+        getStop.addEventListener("click",()=>{
+            timer=false
+        })
+        getReset.addEventListener("click",()=>{
+            timer=false
+            sec=0
+            min=0
+            hrs=0
+            getSecs.innerHTML="00"
+            getMins.innerHTML="00"
+            getHrs.innerHTML="00"
+        })
+</script> 
+</body>
+</html>
